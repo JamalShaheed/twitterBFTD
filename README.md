@@ -10,7 +10,9 @@ Fo anyone else read below
 This Python script was originally created by [misterch0c](https://github.com/misterch0c/twitterBFTD) he did all the hard work, I simply added more exclusions (with plans to add the ability to follow referal links and ignore previously checked domains)
 
 The script takes in a list of Twitter handles and dowloads all previous tweets, it then runs a WHOIS check on each domain linked by the tweet, storing the URL to a text file if an entry dosen't exist (meaning the domain has expired/ is avalible for regristration)
+
 ---------------------------------------------------------------------------------------------------------------------------------
+Original misterch0c repo
 
 Twitter back from the death looks in a user tweets history for domain names that are available for registration.
 
