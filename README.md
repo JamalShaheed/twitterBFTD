@@ -21,12 +21,12 @@ This fork has a few changes to the original repo
 * Domains that are owned are added to the exclusion list to avoid repeated testing
 
 Some features/changes to be made:
-      - [ ] add Verbose and Quiet flags 
-      - [x] PEP8 compliant formating
-      - [ ] Deal with URL's that have a '?' instead of a / 
-      - [ ] Get around Twitter API limits when downloading Tweets
-      - [ ] Try filter out Tweets with no URL before downloading (might not be possible/ worth it)
-
+- [ ] add verbose output and quiet output flags 
+- [x] PEP8 compliant formating
+- [ ] Deal with URL's that have a '?' instead of a / 
+- [ ] Get around Twitter API limits when downloading Tweets
+- [ ] Try filter out Tweets with no URL before downloading (might not be possible/ worth it)
+- [ ] Add the ability to check Twitter handle through commandline argument instead of file
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
