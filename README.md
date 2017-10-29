@@ -10,7 +10,7 @@ Fo anyone else read below
 The script takes in a list of Twitter handles and dowloads all previous tweets, it then runs a WHOIS check on each domain linked by the tweet, storing the URL to a text file if an entry dosen't exist (meaning the domain has expired/ is avalible for regristration)
 
 
-This Python script was originally created by [misterch0c](https://github.com/misterch0c/twitterBFTD) he did all the hard work.
+This Python script was originally created by [misterch0c](https://github.com/misterch0c) he did all the hard work.
 
 This fork has a few changes to the original repo
 
