@@ -37,3 +37,5 @@ A sample file "accounts" has been provided with the top 1000 Twitter users
 
 Example Usage to use "accounts" file and write to PWND.txt:
 `python3 twrtBFTD.py -i accounts -o PWND.txt`
+
+Got to https://apps.twitter.com/ to create your consumer key/secret and access token/secret and add them to secrets.py
