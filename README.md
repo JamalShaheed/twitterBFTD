@@ -18,7 +18,15 @@ This fork has a few changes to the original repo
 * The ability to follow referal links (bit.ly, smart.url) recursively
 * Files to be read from/written are now called with commandline arguments instead of hardcoded
 * Some exceptions caught to stop the script terminating before searching all provided twitter handles
-* Some code layout changes to match PEP8 standards (notably using spaces instead of tabs)
+* Domains that are owned are added to the exclusion list to avoid repeated testing
+
+Some features/changes to be made:
+      - [ ] add Verbose and Quiet flags 
+      - [x] PEP8 compliant formating
+      - [ ] Deal with URL's that have a '?' instead of a / 
+      - [ ] Get around Twitter API limits when downloading Tweets
+      - [ ] Try filter out Tweets with no URL before downloading (might not be possible/ worth it)
+
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
