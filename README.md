@@ -7,19 +7,25 @@ Fo anyone else read below
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
-This Python script was originally created by [misterch0c](https://github.com/misterch0c/twitterBFTD) he did all the hard work, I simply added more exclusions (with plans to add the ability to follow referal links and ignore previously checked domains)
-
 The script takes in a list of Twitter handles and dowloads all previous tweets, it then runs a WHOIS check on each domain linked by the tweet, storing the URL to a text file if an entry dosen't exist (meaning the domain has expired/ is avalible for regristration)
 
+
+This Python script was originally created by [misterch0c](https://github.com/misterch0c/twitterBFTD) he did all the hard work.
+
+This fork has a few changes to the original repo
+
+* More exclusions, read from a csv file
+* The ability to follow referal links (bit.ly, smart.url) recursively
+* Files to be read from/written are now called with commandline arguments instead of hardcoded
+* Some exceptions caught to stop the script terminating before searching all provided twitter handles
+* Some code layout changes to match PEP8 standards (notably using spaces instead of tabs)
+
 ---------------------------------------------------------------------------------------------------------------------------------
-Original misterch0c repo
 
-Twitter back from the death looks in a user tweets history for domain names that are available for registration.
+`pip install pythonwhois tweepy requests`
 
-See blogpost: [How I hijacked top celebrities tweets including Katy Perry, Shakira…](https://medium.com/@MisterCh0c/how-i-hijacked-top-celebrities-tweets-including-katy-perry-shakira-fca3a0e751c6#.eddyocox9)
+Usage: `python3 twrtBFTD.py -i FILE_WITH_TWITTER_HANDLES -o FILE_WRITE_RESULTS_TO`
+A sample file "accounts" has been provided with the top 1000 Twitter users
 
-
-`pip install pythonwhois tweepy`
-
-Usage:
-Just run it at the root of the folder and it will create BFTD_results.txts
+Example Usage to use "accounts" file and write to PWND.txt:
+`python3 twrtBFTD.py -i accounts -o PWND.txt`
