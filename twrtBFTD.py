@@ -74,6 +74,10 @@ def findem(accounts):
 			nn=tweet['entities']['urls']
 			for ur in nn:
 				expanded_url=ur["expanded_url"]
+				try:
+					expanded_url = unshorten_url(expanded_url) #Follows referal links/redirects 
+                		except Exception as e:
+					print(e)
 				expanded_url = expanded_url.replace("http://","").replace("https://","").replace("www.", "").split("/")[0].split(".")
 				expanded_url = expanded_url[len(expanded_url)-2:len(expanded_url)]
 				expanded_url = '.'.join(x for x in expanded_url)
@@ -82,6 +86,8 @@ def findem(accounts):
 					if is_not_registred(expanded_url):
 						print("PWND " + acc +" --  "+expanded_url)
 						urls.append(expanded_url)
+					else:
+						exclusions.append(expanded_url) #Adds owned domains to exclusion list
 	thread1=myThread(accounts)
 	thread1.daemon=True
 	thread1.start()
@@ -91,13 +97,15 @@ def findem(accounts):
 	print("+++ " +str(len(urls))+ " available domain found +++")
 	print(urls)		
 
+def unshorten_url(url):
+	return requests.head(url, allow_redirects=True).url
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth,parser=tweepy.parsers.JSONParser())
 
 #Let's assume those are registred.
-excluded=['twitter.com','facebook.com','fb.me','apple.com','apple.co','snapchat.com','billboard.com','youtube.com','youtu.be','spotify.com','github.com','yahoo.com','fbi.gov','goo.gl','instagram.com','buzzfeed.com','amazon.com','vine.co','twimg.com','persiscope.tv','microsoft.com','fb.on','bit.ly','nike.com']
+excluded=['twitter.com','facebook.com','fb.me','apple.com','apple.co','snapchat.com','billboard.com','youtube.com','youtu.be','spotify.com','github.com','yahoo.com','fbi.gov','goo.gl','instagram.com','buzzfeed.com','amazon.com','vine.co','twimg.com','persiscope.tv','microsoft.com','fb.on','soundcloud.com','nike.com']
 accounts=get_accounts()
 lock = threading.Lock()
 
