@@ -9,7 +9,7 @@
 # This program is distributed in the hope that you do whatever the FUCK,
 # you wanna do with it
 
-
+import requests
 import tweepy
 import time
 import threading
@@ -24,7 +24,7 @@ class myThread (threading.Thread):
         threading.Thread.__init__(self)
         self.accounts=accounts
     def run(self):
-        print "Starting " + self.name
+        print ("Starting " + self.name)
         findem(self.accounts)
 
 def get_all_tweets(screen_name):
@@ -36,7 +36,7 @@ def get_all_tweets(screen_name):
 		new_tweets = api.user_timeline(screen_name = screen_name,count=200,max_id=oldest)
 		alltweets.extend(new_tweets)
 		oldest = alltweets[-1]['id'] - 1
-		print "...%s tweets downloaded so far for %s" % ((len(alltweets)),"@"+screen_name)
+		print ("...%s tweets downloaded so far for %s" % ((len(alltweets)),"@"+screen_name))
 	return alltweets
 
 
@@ -76,18 +76,22 @@ def findem(accounts):
 				expanded_url=ur["expanded_url"]
 				try:
 					expanded_url = unshorten_url(expanded_url) #Follows referal links/redirects 
-                		except Exception as e:
+				except Exception as e:
 					print(e)
 				expanded_url = expanded_url.replace("http://","").replace("https://","").replace("www.", "").split("/")[0].split(".")
 				expanded_url = expanded_url[len(expanded_url)-2:len(expanded_url)]
 				expanded_url = '.'.join(x for x in expanded_url)
+				
 				if expanded_url.lower() not in excluded:
-					print("["+acc+"]"+"  --  "+ expanded_url)
+					print ('[' + acc + ']' + '  --  ' + expanded_url)
 					if is_not_registred(expanded_url):
-						print("PWND " + acc +" --  "+expanded_url)
-						urls.append(expanded_url)
+						print ('PWND ' + acc + ' --  ' + expanded_url)
+							urls.append(expanded_url)
 					else:
-						exclusions.append(expanded_url) #Adds owned domains to exclusion list
+						excluded.append(expanded_url) # Adds unavalible domains to exclusion list
+				else:
+					print ('Skipping ' + expanded_url)
+
 	thread1=myThread(accounts)
 	thread1.daemon=True
 	thread1.start()
